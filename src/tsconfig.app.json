@@ -6,6 +6,8 @@
     "module": "es2015",
     "types": [],
     "paths": {
+        "@abp":["../node_modules/abp-ng2-module/src/"],
+        "@abp/*":["../node_modules/abp-ng2-module/src/*"],
         "@shared": [ "shared" ],
         "@shared/*": [ "shared/*" ],
         "@core": [ "app/core/" ],
