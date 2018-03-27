@@ -1,56 +1,191 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AbpModule } from '@shared/abp-ex/abp.module';
 import { RouterModule } from '@angular/router';
-// delon
+
+import { NzTreeModule } from 'ng-tree-antd';
 import { NgZorroAntdExtraModule } from 'ng-zorro-antd-extra';
-import { AlainThemeModule } from '@delon/theme';
-import { AlainACLModule } from '@delon/acl';
-import { ZORROMODULES, ABCMODULES } from 'app/delon.module';
+
+import { AppSessionService } from './session/app-session.service';
+import { AppUrlService } from './nav/app-url.service';
+import { AppAuthService } from './auth/app-auth.service';
+import { AppRouteGuard } from './auth/auth-route-guard';
+
+
+// region: zorro modules
+import {
+    // LoggerModule,
+    // NzLocaleModule,
+    NzButtonModule,
+    NzAlertModule,
+    NzBadgeModule,
+    // NzCalendarModule,
+    NzCascaderModule,
+    NzCheckboxModule,
+    NzDatePickerModule,
+    NzFormModule,
+    NzInputModule,
+    NzInputNumberModule,
+    NzGridModule,
+    NzMessageModule,
+    NzModalModule,
+    NzNotificationModule,
+    NzPaginationModule,
+    NzPopconfirmModule,
+    NzPopoverModule,
+    NzRadioModule,
+    NzRateModule,
+    NzSelectModule,
+    NzSpinModule,
+    NzSliderModule,
+    NzSwitchModule,
+    NzProgressModule,
+    NzTableModule,
+    NzTabsModule,
+    NzTagModule,
+    NzTimePickerModule,
+    NzUtilModule,
+    NzStepsModule,
+    NzDropDownModule,
+    NzMenuModule,
+    NzBreadCrumbModule,
+    NzLayoutModule,
+    NzRootModule,
+    NzCarouselModule,
+    // NzCardModule,
+    NzCollapseModule,
+    NzTimelineModule,
+    NzToolTipModule,
+    // NzBackTopModule,
+    // NzAffixModule,
+    // NzAnchorModule,
+    NzAvatarModule,
+    NzUploadModule,
+    // SERVICES
+    NzNotificationService,
+    NzMessageService
+} from 'ng-zorro-antd';
+export const ZORROMODULES = [
+    // LoggerModule,
+    // NzLocaleModule,
+    NzButtonModule,
+    NzAlertModule,
+    NzBadgeModule,
+    // NzCalendarModule,
+    NzCascaderModule,
+    NzCheckboxModule,
+    NzDatePickerModule,
+    NzFormModule,
+    NzInputModule,
+    NzInputNumberModule,
+    NzGridModule,
+    NzMessageModule,
+    NzModalModule,
+    NzNotificationModule,
+    NzPaginationModule,
+    NzPopconfirmModule,
+    NzPopoverModule,
+    NzRadioModule,
+    NzRateModule,
+    NzSelectModule,
+    NzSpinModule,
+    NzSliderModule,
+    NzSwitchModule,
+    NzProgressModule,
+    NzTableModule,
+    NzTabsModule,
+    NzTagModule,
+    NzTimePickerModule,
+    NzUtilModule,
+    NzStepsModule,
+    NzDropDownModule,
+    NzMenuModule,
+    NzBreadCrumbModule,
+    NzLayoutModule,
+    NzRootModule,
+    NzCarouselModule,
+    // NzCardModule,
+    NzCollapseModule,
+    NzTimelineModule,
+    NzToolTipModule,
+    // NzBackTopModule,
+    // NzAffixModule,
+    // NzAnchorModule,
+    NzAvatarModule,
+    NzUploadModule
+];
+// endregion
 
 // region: third libs
 import { CountdownModule } from 'ngx-countdown';
-const THIRDMODULES = [ CountdownModule ];
+import { UEditorModule } from 'ngx-ueditor';
+import { NzSchemaFormModule } from 'nz-schema-form';
+const THIRDMODULES = [
+    CountdownModule,
+    UEditorModule,
+    NzSchemaFormModule
+];
 // endregion
 
-// region: your componets & directives
-const COMPONENTS = [];
-const DIRECTIVES = [];
-// endregion
+import { AlainABCModule } from '@delon/abc/index';
+
+import { MomentDatePipe } from '@shared/pipes/moment-date.pipe';
+import { YNPipe } from '@shared/pipes/yn.pipe';
+const PIPES = [MomentDatePipe, YNPipe];
+
+import { ModalHelper } from '@delon/theme/services/modal/modal.helper';
+import { MenuService } from '@delon/theme/services/menu/menu.service';
+import { ColorsService } from '@delon/theme/services/colors/colors.service'
+const HELPERS = [MenuService, ColorsService];
+
 
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule,
+        AbpModule,
         RouterModule,
+        FormsModule,
         ReactiveFormsModule,
+        NzTreeModule,
         ...ZORROMODULES,
         NgZorroAntdExtraModule,
-        AlainThemeModule.forChild(),
-        ...ABCMODULES,
-        AlainACLModule,
-        // third libs
+        AlainABCModule,
         ...THIRDMODULES
     ],
     declarations: [
-        // your components
-        ...COMPONENTS,
-        ...DIRECTIVES
+        ...PIPES
+    ],
+    providers: [
+        ModalHelper
     ],
     exports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
+        NzTreeModule,
         ...ZORROMODULES,
         NgZorroAntdExtraModule,
-        AlainThemeModule,
-        ...ABCMODULES,
-        // third libs
-        ...THIRDMODULES,
-        // your components
-        ...COMPONENTS,
-        ...DIRECTIVES
+        AlainABCModule,
+        ...PIPES,
+        ...THIRDMODULES
     ]
 })
-export class SharedModule { }
+export class SharedModule {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: SharedModule,
+            providers: [
+                NzNotificationService,
+                NzMessageService,
+
+                AppSessionService,
+                AppUrlService,
+                AppAuthService,
+                AppRouteGuard,
+                ...HELPERS
+            ]
+        }
+    }
+}
