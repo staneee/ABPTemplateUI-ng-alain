@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { NgZorroAntdExtraModule } from 'ng-zorro-antd-extra';
 import { AlainThemeModule } from '@delon/theme';
 import { AlainACLModule } from '@delon/acl';
-import { ZORROMODULES, ABCMODULES } from '../delon.module';
+import { ZORROMODULES, ABCMODULES } from 'app/delon.module';
 
 // region: third libs
 import { CountdownModule } from 'ngx-countdown';

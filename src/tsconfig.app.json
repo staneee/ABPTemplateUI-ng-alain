@@ -6,8 +6,8 @@
     "module": "es2015",
     "types": [],
     "paths": {
-        "@shared": [ "app/shared" ],
-        "@shared/*": [ "app/shared/*" ],
+        "@shared": [ "shared" ],
+        "@shared/*": [ "shared/*" ],
         "@core": [ "app/core/" ],
         "@core/*": [ "app/core/*" ],
         "@testing": [ "testing/" ],
