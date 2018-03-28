@@ -7,7 +7,7 @@ import { throwIfAlreadyLoaded } from '@core/module-import-guard';
 
 // mock
 import { DelonMockModule } from '@delon/mock';
-import * as MOCKDATA from '../../_mock';
+import * as MOCKDATA from '../../../_mock';
 import { environment } from '@env/environment';
 const MOCKMODULE = !environment.production || environment.chore === true ?
                     [ DelonMockModule.forRoot({ data: MOCKDATA }) ] : [];
