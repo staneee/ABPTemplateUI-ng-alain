@@ -7,6 +7,8 @@ import { environment } from './environments/environment';
 import { hmrBootstrap } from './hmr';
 
 import { preloaderFinished } from '@delon/theme';
+import { RootModule } from 'root.module';
+
 preloaderFinished();
 
 if (environment.production) {
@@ -14,10 +16,11 @@ if (environment.production) {
 }
 
 const bootstrap = () => {
-    return platformBrowserDynamic().bootstrapModule(AppModule, {
-        defaultEncapsulation: ViewEncapsulation.Emulated,
-        preserveWhitespaces: false
-    });
+  return platformBrowserDynamic().bootstrapModule(RootModule);
+    // return platformBrowserDynamic().bootstrapModule(AppModule, {
+    //     defaultEncapsulation: ViewEncapsulation.Emulated,
+    //     preserveWhitespaces: false
+    // });
 };
 
 if (environment.hmr) {
