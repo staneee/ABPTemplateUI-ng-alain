@@ -128,7 +128,7 @@ const THIRDMODULES = [
 ];
 // endregion
 
-import { AlainABCModule } from '@delon/abc/index';
+import { DelonModule } from '@shared/delon-ex/delon.module';
 
 import { MomentDatePipe } from '@shared/pipes/moment-date.pipe';
 import { YNPipe } from '@shared/pipes/yn.pipe';
@@ -150,7 +150,7 @@ const HELPERS = [MenuService, ColorsService];
         NzTreeModule,
         ...ZORROMODULES,
         NgZorroAntdExtraModule,
-        AlainABCModule,
+        DelonModule,
         ...THIRDMODULES
     ],
     declarations: [
@@ -167,7 +167,7 @@ const HELPERS = [MenuService, ColorsService];
         NzTreeModule,
         ...ZORROMODULES,
         NgZorroAntdExtraModule,
-        AlainABCModule,
+        DelonModule,
         ...PIPES,
         ...THIRDMODULES
     ]

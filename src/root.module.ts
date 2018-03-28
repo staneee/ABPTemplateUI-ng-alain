@@ -6,7 +6,7 @@ import { Abp } from '@shared/abp-ex/abp';
 import { AbpModule,ABP_HTTP_PROVIDER } from '@shared/abp-ex/abp.module';
 
 import { SharedModule } from '@shared/shared.module';
-import { AlainABCModule } from '@delon/abc/index';
+import { DelonModule } from '@shared/delon-ex/delon.module';
 import { NgZorroAntdExtraModule } from 'ng-zorro-antd-extra';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { RootRoutingModule } from './root-routing.module';
@@ -124,7 +124,7 @@ export function getCurrentLanguage(): string {
         BrowserAnimationsModule,
         HttpClientModule,
         SharedModule.forRoot(),
-        AlainABCModule.forRoot(),
+        DelonModule.forRoot(),
         AbpModule,
         ServiceProxyModule,
         RootRoutingModule,
